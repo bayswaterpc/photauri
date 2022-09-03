@@ -28,7 +28,6 @@ fn read_commands() -> Result<Args> {
     match Args::try_parse_from(strings.iter()) {
         Ok(args) => Ok(args),
         Err(err) => {
-            // println!("jmw read {:?}", err);
             err.print()?;
             read_commands()
         },
@@ -38,13 +37,12 @@ fn read_commands() -> Result<Args> {
 pub fn run_cli() -> Result<()> {
     // if we want to read from executable invocation
     //let mut args = Args::parse();
-    println!("Running Prepend");
-    println!("Enter target and directory options, run -h for more help");
+    println!("Prepend Date: Enter target and directory options, run -h for more help");
     let mut args = read_commands()?;
     while !args.back {
         prepend_date(args).with_context(|| "prepend_date execution error".to_string())?;
 
-        println!("Run again or enter '-b' to go back");
+        println!("Prepend Date: Run again or enter '-b' to go back");
         args = read_commands()?;
     }
     anyhow::Ok(())

@@ -37,12 +37,12 @@ pub fn run_cli() -> Result<()> {
     // if we want to read from executable invocation
     //let mut args = Args::parse();
 
-    println!("Enter function, run -h for help");
+    println!("Photorio: Enter function, run -h for help");
     let mut args = read_commands()?;
     while !args.quit {
         cli_execute(args).with_context(|| "command execution error".to_string())?;
 
-        println!("Run another command, enter '-q' to quit");
+        println!("Photorio: Run another command, enter '-q' to quit");
         args = read_commands()?;
     }
     anyhow::Ok(())
